@@ -52,3 +52,14 @@ sudo apt-get install trivy
 
 trivy image redis
 trivy fs         #to scan file system
+
+
+## PLUGINS ##
+-- Go to MANAGE JENKINS, Click on PLUGINS and install all the plugins listed below --
+
+>    SonarQube Scanner
+>    Sonar Quality Gates
+>    OWASP Dependency-Check
+>    Docker
+
+## Go to SONARQUBE SERVER and create TOKEN ##
