@@ -1,0 +1,54 @@
+# Make ec2 instance, take Ubuntu image with t2.large(instance type) and stogare of 30gb
+# Connect & Update ubuntu terminal 
+
+
+
+## DOCKER INSTALLATION ##
+
+sudo apt-get install docker.io -y
+sudo apt-get install docker-compose -y
+docker ps
+
+-- GIVE USER PERMISSION TO DOCKER --
+sudo usermod -aG docker $USER
+sudo reboot
+
+
+
+##  JAVA $ JENKINS INSTALLATIONS ##
+
+sudo apt update
+sudo apt install fontconfig openjdk-17-jre
+java -version
+openjdk version "17.0.8" 2023-07-18
+OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
+OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
+
+--JENKINS'S STEPS --
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+sudo dnf upgrade
+# Add required dependencies for the jenkins package
+sudo dnf install fontconfig java-17-openjdk
+sudo dnf install jenkins
+sudo systemctl daemon-reload
+
+## SONARQUBE INSTALLATION ##
+
+docker run -itd --name sonarqube-server -p 9000:9000 sonarqube: lts-community
+
+
+## TRIVY INSTALLATION ##
+
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+
+--SCAN IMAGE --
+
+trivy image redis
+trivy fs         #to scan file system
