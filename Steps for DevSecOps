@@ -57,5 +57,7 @@ trivy fs         #to scan file system
 >    Sonar Quality Gates
 >    OWASP Dependency-Check
 >    Docker
+>    pipeline stages
+
 
 ## Go to SONARQUBE SERVER and create TOKEN ##
