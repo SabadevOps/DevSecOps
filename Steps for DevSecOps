@@ -33,7 +33,7 @@ sudo apt-get install jenkins
 
 ## SONARQUBE INSTALLATION ##
 
-docker run -itd --name sonarqube-server -p 9000:9000 sonarqube: lts-community
+docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
 
 
 ## TRIVY INSTALLATION ##
